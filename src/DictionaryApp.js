@@ -11,6 +11,10 @@ const DictionaryApp = () => {
   const [definition, setDefinition] = useState("");
 
   const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      setDefinition("Word not found in the dictionary.");
+      return;
+    }
     const foundWord = dictionary.find(
       (entry) => entry.word.toLowerCase() === searchTerm.toLowerCase()
     );
@@ -35,7 +39,7 @@ const DictionaryApp = () => {
         Search
       </button>
       <p>
-        <strong>Definition:</strong> {definition}
+        <strong>Definition:</strong> {definition || ""}
       </p>
     </div>
   );
